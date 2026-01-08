@@ -1,0 +1,41 @@
+# Julia generated files
+*.jl.cov
+*.jl.*.cov
+*.jl.mem
+
+# Build artifacts
+/deps/deps.jl
+/deps/build.log
+/deps/usr/
+/deps/src/
+
+# Documentation build
+/docs/build/
+/docs/site/
+
+# Package manager
+/Manifest.toml
+
+# IDE / Editor
+.idea/
+*.swp
+*.swo
+*~
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Test artifacts
+/test/output/
+*.log
+
+# Compiled files
+*.o
+*.so
+*.dylib
+
+# Coverage
+/coverage/
+lcov.info

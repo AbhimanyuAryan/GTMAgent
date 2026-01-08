@@ -1,0 +1,10 @@
+#!/usr/bin/env julia
+
+# GTM Agent - CLI entry point
+# Run with: julia --project=/path/to/GTMAgent bin/gtm-agent
+
+using Pkg
+Pkg.activate(dirname(@__DIR__))
+
+using GTMAgent
+GTMAgent.main()

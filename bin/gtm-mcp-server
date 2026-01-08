@@ -1,0 +1,22 @@
+#!/usr/bin/env julia
+
+# GTM Agent MCP Server
+# This script starts the GTM Agent as an MCP server for use with Claude Code
+#
+# To use with Claude Code, add to your Claude Code MCP configuration:
+# {
+#   "mcpServers": {
+#     "gtm-agent": {
+#       "command": "julia",
+#       "args": ["--project=/path/to/GTMAgent", "/path/to/GTMAgent/bin/gtm-mcp-server"]
+#     }
+#   }
+# }
+
+using Pkg
+Pkg.activate(dirname(@__DIR__))
+
+using GTMAgent
+
+# Start the MCP server
+GTMAgent.start_mcp_server()
