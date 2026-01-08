@@ -55,11 +55,50 @@ function parse_commandline()
 end
 
 """
+    prompt_api_key()
+
+Prompt user for Anthropic API key with secure input.
+"""
+function prompt_api_key()::String
+    println("\n╔═══════════════════════════════════════════════════════════════╗")
+    println("║  Anthropic API Key Required                                   ║")
+    println("╚═══════════════════════════════════════════════════════════════╝")
+    println()
+    println("Please enter your Anthropic API key:")
+    println("(You can get one from: https://console.anthropic.com/settings/keys)")
+    println()
+    print("API Key: ")
+
+    # Read API key (allowing paste)
+    api_key = strip(readline())
+    println()
+
+    if isempty(api_key)
+        error("API key cannot be empty. Please restart and provide a valid key.")
+    end
+
+    # Optionally save to environment for this session
+    ENV["ANTHROPIC_API_KEY"] = api_key
+    println("✓ API key set for this session")
+    println()
+
+    return api_key
+end
+
+"""
     setup_agent(args::Dict)
 
 Set up the agent based on command line arguments.
 """
 function setup_agent(args::Dict)
+    # Check for Anthropic API key if using anthropic provider
+    if args["provider"] == "anthropic"
+        api_key = get(ENV, "ANTHROPIC_API_KEY", "")
+        if isempty(api_key)
+            api_key = prompt_api_key()
+        end
+    end
+
     # Load configuration
     config_mgr = load_config()
     agent_config = config_to_agent_config(config_mgr)

@@ -25,9 +25,6 @@ function AnthropicProvider(;
     max_tokens::Int = 4096,
     temperature::Float64 = 0.7
 )
-    if isempty(api_key)
-        @warn "ANTHROPIC_API_KEY not set. API calls will fail."
-    end
     AnthropicProvider(api_key, model, base_url, max_tokens, temperature)
 end
 

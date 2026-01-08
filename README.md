@@ -14,7 +14,7 @@ A Julia-based AI agent specialized in Go-to-Market strategy and Customer Success
 ### Prerequisites
 
 - Julia 1.9 or later
-- Anthropic API key (set as `ANTHROPIC_API_KEY` environment variable)
+- Anthropic API key (will be prompted on first run, or set as `ANTHROPIC_API_KEY` environment variable)
 
 ### Setup
 
@@ -30,6 +30,9 @@ julia --project=. -e 'using Pkg; Pkg.instantiate()'
 ```bash
 # Interactive REPL mode
 julia --project=. bin/gtm-agent
+
+# On first run, you'll be prompted to enter your Anthropic API key
+# The key can be pasted from your clipboard
 
 # Single prompt mode
 julia --project=. bin/gtm-agent "What is the health score for customer CUST-001?"
@@ -94,6 +97,28 @@ In interactive mode, the following commands are available:
 | `status` | Show agent status |
 
 ## Configuration
+
+### API Key Setup
+
+When you run GTM Agent for the first time without the `ANTHROPIC_API_KEY` environment variable set, you'll be prompted to enter your API key:
+
+```
+╔═══════════════════════════════════════════════════════════════╗
+║  Anthropic API Key Required                                   ║
+╚═══════════════════════════════════════════════════════════════╝
+
+Please enter your Anthropic API key:
+(You can get one from: https://console.anthropic.com/settings/keys)
+
+API Key: [paste your key here]
+```
+
+The key will be stored in the `ANTHROPIC_API_KEY` environment variable for the current session. To avoid being prompted on every run, set the environment variable in your shell profile:
+
+```bash
+# Add to ~/.bashrc or ~/.zshrc
+export ANTHROPIC_API_KEY="your-api-key-here"
+```
 
 ### Configuration Files
 
